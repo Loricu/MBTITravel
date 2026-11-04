@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".ui.ProfileFragment">
+
+    <TextView
+        android:id="@+id/tvProfileTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profilul tău de Călător"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"/>
+
+    <TextView
+        android:id="@+id/tvMbtiResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MBTI"
+        android:textSize="56sp"
+        android:textColor="#6200EE"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tvProfileTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/tvRecommendation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Recomandări..."
+        android:textSize="18sp"
+        android:lineSpacingExtra="8dp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/tvMbtiResult"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"/>
+
+    <Button
+        android:id="@+id/btnToMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vezi atracțiile pe hartă (GPS)"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="40dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.TestFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test de Personalitate MBTI"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Întrebarea 1: E vs I -->
+        <TextView
+            android:id="@+id/tvQ1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="1. Cum îți reîncarci energia în vacanță?"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+        <RadioGroup
+            android:id="@+id/rgQ1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvQ1">
+
+            <RadioButton
+                android:id="@+id/rbE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Ieșind cu grupuri mari în locuri aglomerate (E)" />
+
+            <RadioButton
+                android:id="@+id/rbI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Plimbări liniștite singur sau cu cineva apropiat (I)" />
+        </RadioGroup>
+
+        <!-- Întrebarea 2: S vs N -->
+        <TextView
+            android:id="@+id/tvQ2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="2. Cum preferi să explorezi orașul?"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rgQ1" />
+
+        <RadioGroup
+            android:id="@+id/rgQ2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvQ2">
+
+            <RadioButton
+                android:id="@+id/rbS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Urmărind hărți concrete și obiective populare (S)" />
+
+            <RadioButton
+                android:id="@+id/rbN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Căutând străzi ascunse, atmosferă și povești (N)" />
+        </RadioGroup>
+
+        <!-- Întrebarea 3: T vs F -->
+        <TextView
+            android:id="@+id/tvQ3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="3. Cum alegi modul de transport?"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rgQ2" />
+
+        <RadioGroup
+            android:id="@+id/rgQ3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvQ3">
+
+            <RadioButton
+                android:id="@+id/rbT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Traseul cel mai rapid și eficient (STB/Metrou) (T)" />
+
+            <RadioButton
+                android:id="@+id/rbF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Traseul cel mai plăcut/scenic (Mers pe jos/Tramvai) (F)" />
+        </RadioGroup>
+
+        <!-- Întrebarea 4: J vs P -->
+        <TextView
+            android:id="@+id/tvQ4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="4. Cum îți planifici ziua?"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rgQ3" />
+
+        <RadioGroup
+            android:id="@+id/rgQ4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvQ4">
+
+            <RadioButton
+                android:id="@+id/rbJ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Itinerar stabilit din timp pe ore (J)" />
+
+            <RadioButton
+                android:id="@+id/rbP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aleg pe moment în funcție de starea mea (P)" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnSubmitTest"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Află Profilul și Recomandările"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rgQ4" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
