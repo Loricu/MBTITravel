@@ -89,5 +89,12 @@ Atracțiile sunt păstrate în memorie, în `AttractionRepository`, care porneș
 ## 4. Rulare
 
 1. Deschide proiectul în Android Studio și sincronizează Gradle.
-2. Pentru hartă: adaugă cheia Google Maps API în `AndroidManifest.xml` (`com.google.android.geo.API_KEY`).
-3. Rulează aplicația pe un emulator sau pe un dispozitiv cu Android 7.0+.
+2. Rulează aplicația pe un emulator sau pe un dispozitiv cu Android 7.0+.
+
+## 5. Limitări cunoscute (prototip)
+
+- **Harta nu este încă configurată.** Cheia Google Maps API nu a fost adăugată, așa că ecranul „Hartă” nu funcționează în această versiune. Integrarea completă este planificată pentru etapele următoare. Pentru activare:
+  - adaugă în `AndroidManifest.xml`, în `<application>`, elementul `<meta-data android:name="com.google.android.geo.API_KEY" android:value="CHEIA_TA" />`;
+  - adaugă permisiunea `ACCESS_FINE_LOCATION`.
+- Atracțiile sunt ținute doar în memorie (date simulate), deci modificările se pierd la repornirea aplicației.
+- Retrofit/Gson sunt incluse, dar nu sunt încă folosite.
