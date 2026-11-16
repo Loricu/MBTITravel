@@ -47,6 +47,17 @@
         android:layout_marginTop="32dp"/>
 
     <Button
+        android:id="@+id/btnToAttractions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Locuri de vizitat"
+        android:padding="12dp"
+        app:layout_constraintBottom_toTopOf="@id/btnToMap"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
         android:id="@+id/btnToMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -63,7 +63,16 @@ public class ProfileFragment extends Fragment {
 
         tvRecommendation.setText(recomandare.toString());
 
-        // 3. Navigarea către Hartă
+        // 3. Navigarea către lista de atracții (CRUD), transmițând tipul MBTI pentru recomandări
+        Button btnToAttractions = view.findViewById(R.id.btnToAttractions);
+        final String mbtiForList = mbti;
+        btnToAttractions.setOnClickListener(v -> {
+            Bundle args = new Bundle();
+            args.putString("mbti_result", mbtiForList);
+            Navigation.findNavController(v).navigate(R.id.action_profileFragment_to_attractionsFragment, args);
+        });
+
+        // 4. Navigarea către Hartă
         btnToMap.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_profileFragment_to_mapFragment);
         });

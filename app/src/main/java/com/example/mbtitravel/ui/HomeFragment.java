@@ -1,10 +1,13 @@
 package com.example.mbtitravel.ui;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -33,46 +36,43 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // --- Verificăm dacă avem deja un profil salvat ---
-        new Thread(() -> {
-            AppDatabase db = AppDatabase.getInstance(requireContext());
-            UserProfile savedProfile = db.userProfileDao().getLastProfile();
-
-            // Dacă există, sărim automat la ecranul de Profil
-            if (savedProfile != null && savedProfile.mbtiType != null) {
-                if (getActivity() != null) {
-                    getActivity().runOnUiThread(() -> {
-                        Bundle bundle = new Bundle();
-                        bundle.putString("mbti_result", savedProfile.mbtiType);
-                        Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_profileFragment, bundle);
-                    });
-                }
-            }
-        }).start();
-
-
+        EditText etName = view.findViewById(R.id.etUserName);
+        CheckBox cbRemember = view.findViewById(R.id.cbRemember);
         Button btnTakeTest = view.findViewById(R.id.btnTakeTest);
         Button btnKnowMbti = view.findViewById(R.id.btnKnowMbti);
         EditText etMbtiInput = view.findViewById(R.id.etMbtiInput);
 
+        // Preluăm utilizatorul salvat din SharedPreferences (nume fișier: "UserPrefs", cheie: "USERNAME_KEY")
+        SharedPreferences sharedPref = requireContext().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String savedUser = sharedPref.getString("USERNAME_KEY", null);
+        if (savedUser != null && !savedUser.isEmpty()) {
+            etName.setText(savedUser);
+            cbRemember.setChecked(true);
+        }
+
+        // --- Acțiune buton "Află-ți personalitatea (Test MBTI)" ---
         btnTakeTest.setOnClickListener(v -> {
+            saveUserPreference(etName.getText().toString().trim(), cbRemember.isChecked());
             Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_testFragment);
         });
 
+        // --- Acțiune buton "Continuă cu tipul introdus" ---
         btnKnowMbti.setOnClickListener(v -> {
             String typedMbti = etMbtiInput.getText().toString().trim().toUpperCase();
+            String userName = etName.getText().toString().trim();
 
             if (typedMbti.length() == 4) {
-                // --- Salvăm profilul în Baza de Date ---
+                saveUserPreference(userName, cbRemember.isChecked());
+
+                // Salvăm profilul MBTI în Baza de Date Room
                 new Thread(() -> {
                     AppDatabase db = AppDatabase.getInstance(requireContext());
-                    db.userProfileDao().deleteAll(); // Ștergem vechiul profil dacă există
+                    db.userProfileDao().deleteAll();
 
                     UserProfile newProfile = new UserProfile();
                     newProfile.mbtiType = typedMbti;
                     db.userProfileDao().insertProfile(newProfile);
 
-                    // După salvare, trecem la ecranul următor
                     if (getActivity() != null) {
                         getActivity().runOnUiThread(() -> {
                             Bundle bundle = new Bundle();
@@ -81,10 +81,20 @@ public class HomeFragment extends Fragment {
                         });
                     }
                 }).start();
-
             } else {
-                Toast.makeText(getContext(), "Introdu 4 litere!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Introdu un MBTI valid de 4 litere (ex: INTJ)!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void saveUserPreference(String userName, boolean isChecked) {
+        SharedPreferences sharedPref = requireContext().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        if (isChecked && !userName.isEmpty()) {
+            editor.putString("USERNAME_KEY", userName);
+        } else {
+            editor.remove("USERNAME_KEY");
+        }
+        editor.apply();
     }
 }

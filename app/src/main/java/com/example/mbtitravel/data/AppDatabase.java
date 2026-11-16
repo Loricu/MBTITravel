@@ -6,15 +6,15 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.mbtitravel.model.User;
 import com.example.mbtitravel.model.UserProfile;
 
-@Database(entities = {UserProfile.class}, version = 1, exportSchema = false)
+@Database(entities = {UserProfile.class, User.class}, version = 2, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
-    // Legăm DAO-ul creat mai devreme
     public abstract UserProfileDao userProfileDao();
+    public abstract UserDao userDao();
 
-    // Creăm o instanță unică a bazei de date (Design Pattern-ul Singleton)
     private static volatile AppDatabase INSTANCE;
 
     public static AppDatabase getInstance(Context context) {
@@ -23,6 +23,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     AppDatabase.class, "mbti_database")
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }
